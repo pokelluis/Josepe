@@ -13,6 +13,7 @@ namespace CosmosKernel1
         {
             Console.Clear();
             Console.WriteLine(Value);
+            Sys.KeyboardManager.SetKeyLayout(new Sys.ScanMaps.ESStandardLayout());
         }
 
         protected static void Menu(string input){
@@ -37,7 +38,7 @@ namespace CosmosKernel1
         protected static void Help()
         {
             Console.WriteLine("Con el comando de about podras ver de que va el sistema operativo");
-            Console.WriteLine("Con el comando de close podras cerrar el dichoso sistema opertaivo");
+            Console.WriteLine("Con el comando de shutdown podras cerrar el dichoso sistema opertaivo");
             Console.WriteLine("Con el comando de restart podras reiniciar el sistema operativo");
         }
 
@@ -55,7 +56,8 @@ namespace CosmosKernel1
         {
             Console.WriteLine("Apagant el sistema...");
             Cosmos.System.Power.Shutdown();
-        }        
+        }
+
         protected override void Run()
         {
             string input = "";
