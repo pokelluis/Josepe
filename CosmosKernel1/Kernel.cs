@@ -39,8 +39,22 @@ namespace CosmosKernel1
                 Listdirectory();    
             }else if (input == "readfiles"){
                 Readfiles();
+            }else if (input == "createfiles"){
+                Createfiles();
+            }else if (input == "deletefiles"){
+                Deletefiles();
+            }else if (input == "writefiles"){
+                Writeinfiles();
+            }else if (input == "movefiles"){
+                string[] words = input.Split(' ');
+                MoveFiles(words[1], words[2]);
+            }else if (input == "readfile"){
+                ReadFile();
+            }else if (input == "readbytes"){
+                Readbytes();
             }
-            else{
+            else
+            {
                 Console.WriteLine("Comando deconocido.");
             }
         }
@@ -52,6 +66,16 @@ namespace CosmosKernel1
             Console.WriteLine("Con el comando 'typefile' podras saber el tipo de documento de tu archivo de mierda");
             Console.WriteLine("Con el comando 'fileslist' podras ver la lista de tus ficheros asquerosos");
             Console.WriteLine("Con el comando 'listdirectory' podras ver la lista de tus ptos directorios");
+            Console.WriteLine("Con el comando 'readfiles' podras leer los ficheros payaso");
+            Console.WriteLine("Con el comando 'listdirectory' podras ver la lista de tus ptos directorios");
+            Console.WriteLine("Con el comando 'createfiles' podras crear ficheros");
+            Console.WriteLine("Con el comando 'deletefiles' podras borrar ficheros");
+            Console.WriteLine("Con el comando 'writeinfiles' podras escribir en ficheros");
+            Console.WriteLine("Con el comando 'movefiles' podras mover ficheros");
+            Console.WriteLine("Con el comando 'readfile' podras leer el texto dentro de un fichero");
+            Console.WriteLine("Con el comando 'readbytes' podras leer los bytes del fichero");
+
+
         }
 
         protected static void About(){
@@ -115,6 +139,78 @@ namespace CosmosKernel1
             }
         }
 
+        static void Createfiles(){
+
+            try
+            {
+                var file_stream = File.Create(@"0:\testing.txt");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+        }
+
+        static void Deletefiles(){
+
+            try
+            {
+                File.Delete(@"0:\testing.txt");
+                Directory.Delete(@"0:\testdirectory\");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        static void Writeinfiles(){
+
+            try
+            {
+                File.WriteAllText(@"0:\testing.txt", "Learning how to use VFS!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public static void MoveFiles(string file, string newpath)
+        {
+            try
+            {
+                File.Copy(file, newpath);
+                File.Delete(file);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("error");
+            }
+        }
+
+        static void ReadFile(){
+            try
+            {
+                Console.WriteLine(File.ReadAllText(@"0:\testing.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        static void Readbytes(){
+            try
+            {
+                Console.WriteLine(File.ReadAllBytes(@"0:\testing.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
         protected override void Run(){
             string input = "";
             Console.WriteLine("Escribe \"help\" para recibir una guia de comandos.");
