@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Text;
 using Sys = Cosmos.System;
@@ -52,6 +53,12 @@ namespace CosmosKernel1
                 ReadFile();
             }else if (input == "readbytes"){
                 Readbytes();
+            }else if (input == "sumar"){
+                Suma();
+            }else if (input == "resta"){
+                Resta();
+            }else if (input == "divisio"){
+                Divisio();
             }
             else
             {
@@ -74,6 +81,10 @@ namespace CosmosKernel1
             Console.WriteLine("Con el comando 'movefiles' podras mover ficheros");
             Console.WriteLine("Con el comando 'readfile' podras leer el texto dentro de un fichero");
             Console.WriteLine("Con el comando 'readbytes' podras leer los bytes del fichero");
+            Console.WriteLine("Con el comando 'sumar' pues que va a hacer tonto bailar?");
+            Console.WriteLine("Con el comando 'resta' enserio hace falta?");
+            Console.WriteLine("Con el comando 'divisio' supongo que no hace falta que no puedes dividir entre cero no?");
+
 
 
         }
@@ -134,6 +145,7 @@ namespace CosmosKernel1
                     Console.WriteLine("Content: " + content);
                 }
             }
+
             catch (Exception e){
                 Console.WriteLine(e.ToString());
             }
@@ -211,6 +223,46 @@ namespace CosmosKernel1
                 Console.WriteLine(e.ToString());
             }
         }
+
+        protected static void Suma(){
+            float num1 = 0;
+            float num2 = 0;
+            Console.WriteLine("Introdeix el primer numero");
+            num1 = float.Parse(Console.ReadLine());
+            Console.WriteLine("Introdeix el segon numero");
+            num2 = float.Parse(Console.ReadLine());
+            float resultado = num1 + num2;
+            Console.WriteLine(resultado.ToString("0.00"));
+        }
+
+        protected static void Resta(){
+            float num1 = 0;
+            float num2 = 0;
+            Console.WriteLine("Introdeix el primer numero");
+            num1 = float.Parse(Console.ReadLine());
+            Console.WriteLine("Introdeix el segon numero");
+            num2 = float.Parse(Console.ReadLine());
+            float resultado = num1 - num2;
+            Console.WriteLine(resultado.ToString("0.00"));
+        }
+
+        protected static void Divisio()
+        {
+            float num1 = 0;
+            float num2 = 0;
+            Console.WriteLine("Introdeix el primer numero");
+            num1 = float.Parse(Console.ReadLine());
+            Console.WriteLine("Introdeix el segon numero");
+            num2 = float.Parse(Console.ReadLine());
+            if (num2 == 0){
+                Console.WriteLine("Eres tonto?");
+            }else{
+                float resultado = num1 - num2;
+                Console.WriteLine(resultado.ToString("0.00"));
+            }
+        }
+
+
         protected override void Run(){
             string input = "";
             Console.WriteLine("Escribe \"help\" para recibir una guia de comandos.");
